@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roche, Papier et Ciseaux </title>
+</head>
+<body>
+
+  <button>Roche</button>
+  <button>Papier</button>
+  <button>Ciseaux</button>
+  
+  <div class="resultat"></div>
+  
+</body>
+</html>
+
+<script>
+  const buttons = document.querySelectorAll("button");
+ // console.log(buttons);
+
+/* Événement sur mes boutons */
+for (let i = 0; i < buttons.length; i++) {
+  buttons [i]. addEventListener ("click", function () {
+   const ChoixUtilisateur = buttons [i].innerHTML;
+  // console.log(ChoixUtilisateur);
+
+  const NumeroHasard = Math.floor(Math.random () * buttons.length); /* Choisir un bouton au hasard */
+  const ChoixRobot = buttons[NumeroHasard].innerHTML; /*  Choix du robot */
+
+  console.log (`Joueur ${ChoixUtilisateur} Contre le robot ${ChoixRobot}`);
+
+  var resultat = " ";
+  if (ChoixUtilisateur === ChoixRobot) {
+    resultat = "Égalité";   
+  }
+
+  else if (
+    // La roche bat le ciseaux
+    (ChoixUtilisateur === "Roche" && ChoixRobot === "Ciseaux")  ||
+    // La roche se fait battre par le papier
+    (ChoixUtilisateur === "Papier" && ChoixRobot === "Roche") ||
+    // le papier se fait battre par les ciseaux
+    (ChoixUtilisateur === "Ciseaux" && ChoixRobot === "Paiper")      
+    )
+     {
+       resultat = "Gagné";       
+     }
+
+     else {
+       resultat = "Perdu";
+     }
+
+     document.querySelector(".resultat").innerHTML =
+     `Joueur : ${ChoixUtilisateur} </br>
+     Robot : ${ChoixRobot} </br>
+     ${resultat} ! `
+  });
+}
+
+</script>
+
